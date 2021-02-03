@@ -28,10 +28,61 @@ beyonceHash = {
   };
 
 # 1. puts all the songs
+
+def all_songs hash
+  hash[:hits].each { |song|
+    puts song
+  }
+end
+
+# all_songs beyonceHash
+
 # 2. puts all the movies
+
+def all_movies hash
+  hash[:movies].each { |movie|
+    puts movie
+  }
+end
+
+# all_movies beyonceHash
+
 # 3. create an array with a list of all of Beyonce's hit song titles
+
+# def song_titles hash
+#   hash[:hits].map { |song|
+#     song[:title]
+#   }
+# end
+
+def song_titles hash
+  hash[:hits].reduce([]) { |arr, el|
+    arr << el[:title]
+  }
+end
+
+pp song_titles beyonceHash
+
 # 4. create an array with a list of all of Beyonce's fierceness ratings
+
+def fierceness_ratings hash
+  hash[:hits].map { |song|
+    song[:fierceness]
+  }
+end
+
+# pp fierceness_ratings beyonceHash
+
 # 5. give me all the songs where Beyonce is wearing a bodysuit or a bodysuit is part of the video theme
+
+def bodysuits hash
+  hash[:hits].filter { |song|
+    song[:signature_look]["bodysuit"] || song[:video_theme]["bodysuit"]
+  }
+end
+
+# pp bodysuits beyonceHash
+
 # 6. create an array with all of the songs where Beyonce's fierceness is greater than or equal to 8
 # 7. create an array with all of the movies Beyonce made in 2006 and after
 # 8. find all the hit songs where beyonce was in a group
@@ -39,14 +90,54 @@ beyonceHash = {
 # 10. find the hit song sorry
 # 11. find all hit songs where Beyonce's fierceness rating is 10
 # 12. sum up Beyonces fierceness value for all of her hit songs
+
+def sum_of_fierce hash
+  hash[:hits].reduce(0) { |sum, el|
+    sum + el[:fierceness]
+  }
+end
+
+# pp sum_of_fierce beyonceHash
+
 # 13. get the average fierceness value for all of her hit songs
+
+def avg_of_fierce hash
+  hash[:hits].reduce(0) { |sum, el|
+    sum + el[:fierceness]
+  }.to_f / hash.length
+end
+
+# pp avg_of_fierce beyonceHash
+
 # 14. sum up Beyonces rating value for all of her movies
+
+def sum_of_fierce hash
+  hash[:movies].reduce(0) { |sum, el|
+    sum + el[:rating]
+  }
+end
+
+# pp sum_of_fierce beyonceHash
+
 # 15. get the average rating value for all of her movies
+
+def avg_of_movies hash
+  hash[:movies].reduce(0) { |sum, el|
+    sum + el[:rating]
+  }.to_f / hash.length
+end
+
+# pp avg_of_movies beyonceHash
+
 # 16. sum up the total number of dancers in all of the hit song videos
 # 17. create an array of beyonces hairstyles without repeats
 # 18. create an object where the properties are song names and the value is an object which contains that fierceness and average fierceness
 # 19. create an object where the properties are movie names and the value is an object which contains that rating and average rating
 # 20. create a hash with beyonces hairstyles with a tally of each hairstyle ie { 'blonde': 3, ect.}  
 
-binding.pry
-0
+# def beyonces_hairstyles hash
+
+# end
+
+# binding.pry
+# 0
